@@ -16,7 +16,14 @@
     <div class="header">
         <h1 onclick="test()">hello world</h1>
     </div>
+
+    
     <input type="file" id="file" accept="application/json">
+
+    <form method="post">
+        {% csrf_token %}
+        <button id="btn" name="jsonUpload" value="">Upload</button>
+    </form>
 
     <script type="text/javascript" src="{% static 'script.js' %}"></script>
 
