@@ -1,4 +1,31 @@
 {
-    "question": "elon musk est le fondateur de quelle entreprise ?",
-    "reponse": "tesla"
+	"Presentation": {
+		"Sous-titre": "oui",
+		"texte": "oui",
+		"Sous-titre2": "oui",
+		"texte2": "non"
+	},
+	"QCM": {
+		"Question 1": {
+			"Question": "Quelles plantes sont carnivores?",
+			"Points": "2",
+			"type": "ouverte/qcm",
+			"Choix": "(tableau) (skip si question=ouverte)[\"oui\",\"non\"]",
+			"Reponse attendu": "oui",
+			"Explication": "non"
+		},
+		"Question 2": {
+			"Question": "Le ciel est bleu?",
+			"Points": "1",
+			"type": "ouverte/qcm",
+			"Choix": "(tableau) (skip si question=ouverte)[\"oui\",\"non\"]",
+			"Reponse attendu": "non",
+			"Explication": "oui"
+		}
+	},
+	"Format_ini": {
+		"ini": {
+			"Titre": "QCM fou"
+		}
+	}
 }
