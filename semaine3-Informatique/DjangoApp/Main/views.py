@@ -1,10 +1,13 @@
+from contextvars import Context
 from multiprocessing import context
+from tkinter.messagebox import QUESTION
 from django.shortcuts import render
 import json
 import openai
 from .forms import QuestionForm
 from .models import Question
 import os
+#from configparser import ConfigParser
 
 # openai.api_key = ""
 
@@ -49,20 +52,49 @@ def question(request):
         with open("media/question/data.json") as json_file:
             print(json_file)
             jsonfile = json.load(json_file)
-        question=jsonfile["QCM"]["Question 1"]["Question"]
-        point=jsonfile["QCM"]["Question 1"]["Points"]
-        types=jsonfile["QCM"]["Question 1"]["type"]
-        choix=jsonfile["QCM"]["Question 1"]["Choix"]
-        reponse=jsonfile["QCM"]["Question 1"]["Reponse attendu"]
-        explication=jsonfile["QCM"]["Question 1"]["Explication"]
-        print(len(jsonfile["QCM"]))
-        print("OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-        context = {'question':question,'point':point,'type':types,'choix':choix,'reponse':reponse,'explication':explication}
+        #parser = ConfigParser()
+        #test= parser.read('Format_ini.ini')
+        #print(test)
+        #print(parser.get('Question 1', 'type'))
+        nombre_question=len(jsonfile["QCM"])
+        question=[]
+        point=[]
+        types=[]
+        choix=[]
+        reponse=[]
+        explication=[]
+        context = {'questionsdkljdjl':'15'}
+        for o in range (nombre_question):
+            question.append(jsonfile["QCM"]["Question {}".format(o+1)]["Question"])
+            
+            context['question{}'.format(o)]=question[o]
+
+            #context.update({'question{}'.format(o):question[o]})
+            #question=jsonfile["QCM"]["Question {}".format(o+1)]["Question"]
+            point.append(jsonfile["QCM"]["Question {}".format(o+1)]["Points"])
+            context['point{}'.format(o)]=point[o]
+
+            types.append(jsonfile["QCM"]["Question {}".format(o+1)]["type"])
+            context['types{}'.format(o)]=types[o]
+
+            choix.append(jsonfile["QCM"]["Question {}".format(o+1)]["Choix"])
+            context['choix{}'.format(o)]=choix[o]
+
+            reponse.append(jsonfile["QCM"]["Question {}".format(o+1)]["Reponse attendu"])
+            context['reponse{}'.format(o)]=reponse[o]
+
+            explication.append(jsonfile["QCM"]["Question {}".format(o+1)]["Explication"])
+            context['explication{}'.format(o)]=explication[o]
+            
+        #context = {'question':question[0],'point':point,'type':types,'choix':choix,'reponse':reponse,'explication':explication}
+        #print(context)
+        #context['question1']=question[1]
+        #contexte.update({'question1':question[1]})
+        
         
 
     return render(request, 'main/question.html',context)
 
-#def recup_quest()
-#    return
+
 
 
