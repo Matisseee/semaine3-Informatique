@@ -18,10 +18,11 @@
     </div>
 
 
-    <input type="file" id="file" accept="application/json">
+    <!-- <input type="file" id="file" accept="application/json"> -->
 
-    <form method="post">
+    <form enctype="multipart/form-data" method="post">
         {% csrf_token %}
+        {{ form.as_p }}}
         <button id="btn" name="jsonUpload" value="">Upload</button>
     </form>
     <h1>{{name}}</h1>

@@ -2,7 +2,5 @@ from django.db import models
 
 # Create your models here.
 class Question(models.Model):
-    ennonce = models.CharField(max_length=255)
-    reponse = models.CharField(max_length=255)
-    
-    
+    ListeQuestion = models.FileField(upload_to='question/')
+ 

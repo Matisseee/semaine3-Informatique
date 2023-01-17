@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import json
 import openai
+from .forms import QuestionForm
+from .models import Question
+import os
 
 # openai.api_key = ""
 
@@ -15,22 +18,30 @@ def CallChatGpt(question,reponse):
     res = json.loads(res)
     res = res["choices"][0]["text"]
     return res
+        # Reponse = CallChatGpt(jsonUpload["question"],jsonUpload["reponse"])
 
 
 
 # Create your views here.
 def index(request):
-    Reponse = ""
     if request.method == "POST":
-        print("POST")
-        jsonUpload = request.POST.get("jsonUpload")
-        jsonUpload = json.loads(jsonUpload)
-        print(jsonUpload)
-        print(jsonUpload["question"])
-        Reponse = CallChatGpt(jsonUpload["question"],jsonUpload["reponse"])
-        print(Reponse)
-    context = {'name':Reponse}
-    return render(request, 'main/index.html',context)
+        form = QuestionForm(request.POST, request.FILES)
+        if form.is_valid():
+            if os.listdir("media/question"):
+                for file in os.listdir("media/question"):
+                    os.remove("media/question/"+file)
+            form.save()
+            os.rename("media/question/"+os.listdir("media/question")[0],"media/question/data.json")
+
+            
+
+    else :
+        form = QuestionForm()
+
+    return render(request, 'main/index.html', {'form': form})
+
+
+
 
 def question(request):
     return render(request, 'main/question.html')
