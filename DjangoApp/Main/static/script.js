@@ -5,6 +5,7 @@ let btn = document.getElementById("btn");
 
 
 
+
 let obj;
 function onChange(event) {
     var reader = new FileReader();
