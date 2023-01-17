@@ -7,20 +7,40 @@
 	},
 	"QCM": {
 		"Question 1": {
-			"Question": "Quelles plantes sont carnivores?",
-			"Points": "2",
-			"type": "ouverte/qcm",
+			"ID": "1",
+			"Question": "enoncé",
+			"Points": "1",
+			"type": "ouverte/qcm/txtatr",
 			"Choix": "(tableau) (skip si question=ouverte)[\"oui\",\"non\"]",
 			"Reponse attendu": "oui",
 			"Explication": "non"
 		},
 		"Question 2": {
-			"Question": "Le ciel est bleu?",
+			"ID": "2",
+			"Question": "La seconde <0> mondiale a eu lieu en 39/45.",
 			"Points": "1",
-			"type": "ouverte/qcm",
-			"Choix": "(tableau) (skip si question=ouverte)[\"oui\",\"non\"]",
-			"Reponse attendu": "non",
-			"Explication": "oui"
+			"type": "txtatr",
+			"Choix": "[]",
+			"Reponse attendu": "[\"guerre\"]",
+			"Explication": "Celle des allier"
+		},
+		"Question 3": {
+			"ID": "3",
+			"Question": "Ce matin, je suis allé à la boulangerie pour <0> du pain. Sur le chemin du retour, la pluie s'est <1> à tomber. Comme j'avais oublié mon parapluie, je suis arrivé tout <2> à la maison !",
+			"Points": "5",
+			"type": "txtatr",
+			"Choix": "[]",
+			"Reponse attendu": "[\"acheter\", \"mise\", \"mouillé\"]",
+			"Explication": "orthographe"
+		},
+		"Question 4": {
+			"ID": "4",
+			"Question": "Qui est le fondateur de Space X?",
+			"Points": "1",
+			"type": "qcm",
+			"Choix": "[]",
+			"Reponse attendu": "[\"elon musk\"]",
+			"Explication": "société fondée en 2002"
 		}
 	},
 	"Format_ini": {
