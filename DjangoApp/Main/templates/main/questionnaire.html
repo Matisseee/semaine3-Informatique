@@ -48,6 +48,7 @@
                     <div class="input-container">
                         <input class="input" type="text" name="Question{{Element.6}}"/>
                         <!-- <span class="span-correction">Correct</span> -->
+                        <span>{{Element.7}}</span>
                     </div>
 
                     <!--Si le type de question est "QCM" -->
@@ -59,6 +60,8 @@
                             <span id="spanQ{{Element.6}}P{{forloop.counter}}"class="span-question">{{Proposition}}</span> <!-- affiche la proposition -->
                         </div>
                         {% endfor %}
+                        <span>{{Element.7}}</span>
+
                     </div>
                     {% endif %}
 

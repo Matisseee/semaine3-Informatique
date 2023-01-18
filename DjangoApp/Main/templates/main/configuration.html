@@ -21,7 +21,7 @@
     <!-- <input type="file" id="file" accept="application/json"> -->
 
     <form enctype="multipart/form-data" method="post">
-        {% csrf_token %}
+        {% csrf_token %}    
         {{ form.as_p }}
         <button id="btn" name="jsonUpload" value="">Upload</button>
     </form>
