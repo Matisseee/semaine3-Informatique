@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Main.views import index, Questionnaire, Configuration
+from Main.views import index, Questionnaire, Configuration, Correction
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('configuration/', Configuration),
-    path('question/', Questionnaire)
-]
+    path('correction/', Correction),
+    path('question/', Questionnaire),
+    
+ ]
