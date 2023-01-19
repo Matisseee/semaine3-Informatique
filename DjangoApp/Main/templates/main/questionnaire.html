@@ -17,69 +17,72 @@
     let oldSelection;
     let value;
 
-    function toggleQCM(num_question,num_proposition){
-        oldSelection = document.getElementById("Q"+num_question+"oldSelection").value;
-        newSelection = document.getElementById("Q"+num_question+"P"+num_proposition);
+    function toggleQCM(num_question, num_proposition) {
+        oldSelection = document.getElementById("Q" + num_question + "oldSelection").value;
+        newSelection = document.getElementById("Q" + num_question + "P" + num_proposition);
         newSelection.style.border = "2px solid #000";
-        value = document.getElementById("spanQ"+num_question+"P"+num_proposition).innerHTML;
-        document.getElementById("Q"+num_question).value = value;
+        value = document.getElementById("spanQ" + num_question + "P" + num_proposition).innerHTML;
+        document.getElementById("Q" + num_question).value = value;
 
-        if (oldSelection != undefined){
+        if (oldSelection != undefined) {
             oldSelection.style.border = "0";
         }
-        document.getElementById("Q"+num_question+"oldSelection").value = newSelection;
+        document.getElementById("Q" + num_question + "oldSelection").value = newSelection;
     }
-    
+
 </script>
 <body>
     <div class="header">
-            <h1 onclick="test()">Formulaire Eleve</h1>
-        </div>
-        <div class="form-container">
-            <form class="form" method="post">
-                {% csrf_token %}
+        <h1 onclick="test()">Formulaire Eleve</h1>
+    </div>
+    <div class="form-container">
+    
+        <form class="form" method="post" action="../correction/">
+            {% csrf_token %}
 
-                {% for Element in ElementsQuestion %}
-                <div class="question">
-                    <span class="span-question"> Question {{Element.6}} : {{Element.0}}</span> <!-- Numero de la question et ennoncé : -->
-
-                    <!--Si le type de question est "ouverte" -->
-                    {% if Element.2 == "ouverte" %} 
-                    <div class="input-container">
-                        <input class="input" type="text" name="Question{{Element.6}}"/>
-                        <!-- <span class="span-correction">Correct</span> -->
-                        <span>{{Element.7}}</span>
-                    </div>
-
-                    <!--Si le type de question est "QCM" -->
-                    {% else %}
-                    <div id="Q{{Element.6}}oldSelection" value="" class="container-QCM"> <!-- value = derniere case cliquée -->
-                        <input type="hidden" id="Q{{Element.6}}"name="Question{{Element.6}}" value=""> <!-- value = reponse a la questionQ qui sera envoyé dans la requete POST -->
-                        {% for Proposition in Element.3 %} <!-- fait une boucle pour faire afficher les n propositions dans le QCM-->
-                        <div id="Q{{Element.6}}P{{forloop.counter}}" onclick='toggleQCM("{{Element.6}}","{{forloop.counter}}")' class="input-container-QCM"> <!--  id unique en fonction de question/proposition + onclick fonction update value du input ligne 56 -->
-                            <span id="spanQ{{Element.6}}P{{forloop.counter}}"class="span-question">{{Proposition}}</span> <!-- affiche la proposition -->
-                        </div>
-                        {% endfor %}
-                        <span>{{Element.7}}</span>
-
-                    </div>
-                    {% endif %}
-
-                </div>
-                {% endfor %}
-
-                
-                
-                <div class="btn-container"> 
-                    <button class="btn-submit" name="jsonUpload" value="">Valider</button>
+            {% for Element in ElementsQuestion %}
+            <div class="question">
+                <span class="span-question"> Question {{Element.6}} : {{Element.0}}</span> <!-- Numero de la question et ennoncé : -->
+                <!--Si le type de question est "ouverte" -->
+                {% if Element.2 == "ouverte" %}
+                <div class="input-container">
+                    <input class="input" type="text" name="Question{{Element.6}}" />
+                    <!-- <span class="span-correction">Correct</span> -->
+                    <span>{{Element.7}}</span>
                 </div>
 
+                <!--Si le type de question est "QCM" -->
+                {% else %}
+                <div id="Q{{Element.6}}oldSelection" value="" class="container-QCM">
+                    <!-- value = derniere case cliquée -->
+                    <input type="hidden" id="Q{{Element.6}}" name="Question{{Element.6}}" value=""> <!-- value = reponse a la questionQ qui sera envoyé dans la requete POST -->
+                    {% for Proposition in Element.3 %} <!-- fait une boucle pour faire afficher les n propositions dans le QCM-->
+                    <div id="Q{{Element.6}}P{{forloop.counter}}" onclick='toggleQCM("{{Element.6}}","{{forloop.counter}}")' class="input-container-QCM">
+                        <!--  id unique en fonction de question/proposition + onclick fonction update value du input ligne 56 -->
+                        <span id="spanQ{{Element.6}}P{{forloop.counter}}" class="span-question">{{Proposition}}</span> <!-- affiche la proposition -->
+                    </div>
+                    {% endfor %}
+                    <span>{{Element.7}}</span>
 
-            </form>
-        </div>
+                </div>
+                {% endif %}
+
+            </div>
+            {% endfor %}
 
 
-   
+
+            <div class="btn-container">
+
+                <button class="btn-submit" name="jsonUpload" value="">Valider</button>
+            </div>
+
+            
+        </form>
+    </div>
+
+
+
 
 
 </body>
